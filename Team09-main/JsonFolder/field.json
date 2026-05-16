@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "name": "火山",
+      "Type": "Fire"
+    },
+    {
+      "name": "海",
+      "Type": "Water"
+    },
+    {
+      "name": "草原",
+      "Type": "Grass"
+    }
+  ]
+}

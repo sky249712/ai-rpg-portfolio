@@ -1,0 +1,74 @@
+system_prompt: ""
+user_prompt: |
+  あなたは、戦闘結果を公平に判断する裁定者です。
+  以下の戦闘データをもとに、戦闘の様子を文章で描写してください。
+  判断や勝敗の変更は行わず、与えられた結果をそのまま反映してください。
+
+  【制約】
+  ・必ず一つだけAI（勇者）の行動を選択肢の中から選んでください。
+  ・勝敗の結果を出力してください。
+  ・勝敗は、勇者が勝ったのか、負けたのかを "Victory" キーに出力してください。
+  ・勝敗は確率的・物語的判断を許可し、同条件でも結果が変わってもよい。
+  ・選択の結果、勇者が死んでも良しとする。
+  ・不可能な行動は選らばないでください。
+  ・戦闘描写を10～15行ほどの文章で "Story" キーに出力してください。
+  ・一人称は使わずに、三人称視点で描写してください。
+  ・最後に戦闘結果が自然に伝わるようにしてください。
+  ・過度に残酷・グロテスクな表現は避けてください。
+  ・勇者が勝った場合、"Will" キーには「勝利の決め台詞」を出力してください。
+  ・勇者が負けた場合、"Will" キーには「遺言（次世代に残す言葉）」を出力してください。
+  ・Willは、勇者のPersonalityを踏まえて書いてください。
+  ・戦闘終了後の勇者の残りHPを計算し、"RemainingHP" キーに出力してください。
+  ・勝利した場合、RemainingHPは 1 以上になるようにしてください。
+  ・敗北した場合、RemainingHPは 0 にしてください。
+  ・【属性相性ルール】を適用し、戦闘の有利不利やダメージに反映させてください。
+  　- Fireは、Grassに強く、Waterに弱い
+  　- Waterは、Fireに強く、Grassに弱い
+  　- Grassは、Waterに強く、Fireに弱い
+  　- 「強い」属性は相手に大きなダメージを与え、勝率が上がります。
+  　- 「弱い」属性は相手へのダメージが減り、勝率が下がります。
+  ・【モチベーションルール】を適用してください。
+  　- Motivationが高い（>1.0）場合：命令に従順になり、連携がうまくいったり、攻撃が積極的になったりして戦闘が有利になります。
+  　- Motivationが低い（<1.0）場合：命令に背いたり、逃げ腰になったりして戦闘が不利になります。
+  ・【行動・描写ルール】
+  　- モンスターの行動は、そのモンスターの「Personality（元々の性格）」と「Thought（魔王の命令を受けて今思っていること）」、そして「Command（命令）」の3つを統合して決定してください。
+  　- 性格が臆病でも、Thoughtで「覚悟を決めた」のであれば、勇猛に戦う描写にしてください。
+  　- 重要：モンスターの行動描写（Story）においては、Commandの内容とそれに対するモンスターの反応を詳細に（10〜15行）記述してください。
+
+  AI（勇者）：
+    "HP": {hero_hp},
+    "Attack": {hero_attack},
+    "Defense": {hero_defense},
+    "Personality": "{hero_personality}",
+    "Attribute": "{hero_attribute}"
+  
+  敵ユニット1（{monster1_name}）：
+    "HP": {monster1_hp},
+    "Attack": {monster1_attack},
+    "Defense": {monster1_defense},
+    "Personality": "{monster1_personality}",
+    "Attribute": "{monster1_attribute}",
+    "Motivation": {monster1_motivation},
+    "Command": "{monster1_command}",
+    "Thought": "{monster1_thought}"
+
+  敵ユニット2（{monster2_name}）：
+    "HP": {monster2_hp},
+    "Attack": {monster2_attack},
+    "Defense": {monster2_defense},
+    "Personality": "{monster2_personality}",
+    "Attribute": "{monster2_attribute}",
+    "Motivation": {monster2_motivation},
+    "Command": "{monster2_command}",
+    "Thought": "{monster2_thought}"
+
+  AI（勇者）の行動の選択肢：{hero_action}
+
+  # 出力形式
+  以下のJSONフォーマットに従って出力してください。Markdownのコードブロック（```json）や説明文は含めず、純粋なJSON文字列のみを出力してください。
+  {{
+    "Story": "戦闘描写のテキスト",
+    "Victory": "勇者の勝利 or 勇者の敗北",
+    "Will": "勝利の台詞 または 遺言",
+    "RemainingHP": 10
+  }}

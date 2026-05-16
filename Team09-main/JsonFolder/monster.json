@@ -1,0 +1,54 @@
+{
+  "monsters": [
+    {
+      "name": "メラリザード",
+      "attribute": "Fire",
+      "stats": {
+        "HP": 1,
+        "Attack": 3,
+        "Defense": 1
+      },
+      "personality": "俊敏"
+    },
+    {
+      "name": "スライム",
+      "attribute": "Water",
+      "stats": {
+        "HP": 2,
+        "Attack": 1,
+        "Defense": 2
+      },
+      "personality": "忠実"
+    },
+    {
+      "name": "マタンゴ",
+      "attribute": "Grass",
+      "stats": {
+        "HP": 3,
+        "Attack": 1,
+        "Defense": 1
+      },
+      "personality": "怠惰"
+    },
+    {
+      "name": "キメラ",
+      "attribute": "Fire",
+      "stats": {
+        "HP": 2,
+        "Attack": 2,
+        "Defense": 1
+      },
+      "personality": "狡猾"
+    },
+    {
+      "name": "ストーンマン",
+      "attribute": "Grass",
+      "stats": {
+        "HP": 1,
+        "Attack": 1,
+        "Defense": 3
+      },
+      "personality": "屈強"
+    }
+  ]
+}
